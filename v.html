@@ -76,14 +76,42 @@ padding-bottom: 0.75vh;
 text-align: center;
 }
 }
-</style>
 <div class="text-16578133316969nqkcl-element text">
-<p>
-Tú y algunas personas cercanas a ti.&nbsp;<span style="color:#000000"><b><span class="md"></span></b></span>&nbsp;fueron seleccionados para participar
-</p>
+    <p>
+        Tú y algunas personas cercanas a ti.&nbsp;<span style="color:#000000"><b><span class="md"></span></b></span>&nbsp;fueron seleccionados para participar
+        <span id="cidade" style="font-weight: bold;"></span>.
+    </p>
 </div>
 </div>
 </div>
+
+<script>
+    function obterLocalizacao() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                const apiKey = 'SUA_API_KEY_AQUI';
+                const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const cidade = data.results[0].components.city;
+                        const cidadeElement = document.getElementById('cidade');
+                        cidadeElement.textContent = cidade;
+                    })
+                    .catch(error => console.error('Erro ao obter a cidade:', error));
+            });
+        } else {
+            console.error('Geolocalização não é suportada pelo seu navegador.');
+        }
+    }
+
+    obterLocalizacao();
+</script>
+
 </div>
 <div class="division-1657813536866__wrapper">
 <style>
