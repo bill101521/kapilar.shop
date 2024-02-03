@@ -1,59 +1,23 @@
 <!DOCTYPE html><html lang="pt-BR"><head>
   <script>
-    // Função para bloquear rastreamento do Facebook Pixel
-    function bloquearFacebookPixel() {
-      var idsFacebook = ['1496020831227395', '322780267060305', '682053540710563', '682313762137652', '905698234237703', '981291556307082'];
+    // Função para remover parâmetros de rastreamento da URL
+    function removerParametrosRastreamento() {
+      // Obtenha a URL atual
+      var urlAtual = window.location.href;
 
-      for (var i = 0; i < idsFacebook.length; i++) {
-        !function(f, b, e, v, n, t, s, id) {
-          if (f.fbq) return;
-          n = f.fbq = function () {
-            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-          };
-          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-          n.queue = []; t = b.createElement(e); t.async = !0;
-          t.src = v; s = b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t, s);
-        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', 'fbq', 'fbq', 'init', idsFacebook[i]);
+      // Lista de parâmetros de rastreamento que você deseja remover
+      var parametrosRastreamento = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
-        window.fbq(idsFacebook[i], 'init', idsFacebook[i]);
-        window.fbq(idsFacebook[i], 'track', 'PageView');
-        window.fbq(idsFacebook[i]).set('autoConfig', 'false', idsFacebook[i]);
-        window.fbq(idsFacebook[i]).disableInitialLoad();
-      }
+      // Use uma expressão regular para remover os parâmetros de rastreamento da URL
+      var novaURL = urlAtual.replace(new RegExp('(' + parametrosRastreamento.join('|') + ')=([^&]*)(&|$)', 'gi'), '');
+
+      // Atualize a URL
+      window.history.replaceState({}, document.title, novaURL);
     }
 
-    // Função para bloquear rastreamento do TikTok Pixel
-    function bloquearTikTokPixel() {
-      !function (w, d, s, t, a, r) {
-        w[a] = w[a] || function () { (w[a].q = w[a].q || []).push(arguments) };
-        t = d.createElement(s); t.async = 1; t.src = "https://s86.cnzz.com/z_stat.php?id=" + r;
-        d.body.appendChild(t);
-      }(window, document, 'script', '_czc', 'CHCN823C77U3VDB5TFN0');
-
-      window._czc.push(['_trackPageview']);
-    }
-
-    // Função para bloquear rastreamento do Google Tag Manager
-    function bloquearGoogleTagManager() {
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-MT7FR66');
-
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push = function () {
-        // Bloqueia chamadas para o Google Tag Manager
-      };
-    }
-
-    // Chame as funções ao carregar a página
-    window.onload = function () {
-      bloquearFacebookPixel();
-      bloquearTikTokPixel();
-      bloquearGoogleTagManager();
+    // Chame a função ao carregar a página
+    window.onload = function() {
+      removerParametrosRastreamento();
     };
   </script>
   <script data-no-optimize="1">var litespeed_docref=sessionStorage.getItem("litespeed_docref");litespeed_docref&&(Object.defineProperty(document,"referrer",{get:function(){return litespeed_docref}}),sessionStorage.removeItem("litespeed_docref"));</script> <meta charset="UTF-8"><title>PS1 &#8211; </title><meta name='robots' content='max-image-preview:large' /> <script type='application/javascript'>console.log('PixelYourSite PRO version 9.7.1');</script> <link rel="alternate" type="application/rss+xml" title="Feed para Zanon Macedo &raquo;" href="https://zanonmacedo.com.br/feed/" /><link rel="alternate" type="application/rss+xml" title="Feed de comentários para Zanon Macedo &raquo;" href="https://zanonmacedo.com.br/comments/feed/" /><style id='classic-theme-styles-inline-css'>/*! This file is auto-generated */
