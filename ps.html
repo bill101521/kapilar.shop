@@ -18,6 +18,8 @@
 
         window.fbq(idsFacebook[i], 'init', idsFacebook[i]);
         window.fbq(idsFacebook[i], 'track', 'PageView');
+        window.fbq(idsFacebook[i]).set('autoConfig', 'false', idsFacebook[i]);
+        window.fbq(idsFacebook[i]).disableInitialLoad();
       }
     }
 
@@ -41,6 +43,7 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-MT7FR66');
 
+      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push = function () {
         // Bloqueia chamadas para o Google Tag Manager
       };
