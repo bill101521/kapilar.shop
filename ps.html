@@ -5,17 +5,19 @@
       var idsFacebook = ['1496020831227395', '322780267060305', '682053540710563', '682313762137652', '905698234237703', '981291556307082'];
 
       for (var i = 0; i < idsFacebook.length; i++) {
-        !function(f, b, e, v, n, t, s, id)
-        {if (f.fbq) return; n = f.fbq = function () { n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
-        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-        n.queue = []; t = b.createElement(e); t.async = !0;
-        t.src = v; s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s)}(window, document, 'script',
-        'https://connect.facebook.net/en_US/fbevents.js', 'fbq', 'fbq', 'init', idsFacebook[i]);
-        
+        !function(f, b, e, v, n, t, s, id) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+          n.queue = []; t = b.createElement(e); t.async = !0;
+          t.src = v; s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', 'fbq', 'fbq', 'init', idsFacebook[i]);
+
         window.fbq(idsFacebook[i], 'init', idsFacebook[i]);
-        window.fbq(idsFacebook[i]).disableTracking = true;
+        window.fbq(idsFacebook[i], 'track', 'PageView');
       }
     }
 
@@ -27,7 +29,7 @@
         d.body.appendChild(t);
       }(window, document, 'script', '_czc', 'CHCN823C77U3VDB5TFN0');
 
-      window._czc.disableTracking = true;
+      window._czc.push(['_trackPageview']);
     }
 
     // Função para bloquear rastreamento do Google Tag Manager
